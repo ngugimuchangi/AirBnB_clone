@@ -9,10 +9,13 @@ class FileStorage():
     """ File Storage Class
         Private class attributes:
             __file_path: path to storage file engine
-            __object: dictionary of existing objects with the following
+            __objects: dictionary of existing objects with the following
                       key/value pair - '<class name>.id': obj.__dict__
         Public instance methods:
-            all, new, save, reload
+            all: returns a dictionary of all objects created i.e __objects
+            new: adds a new object to the dictionary __objects
+            save: save objects to a json file
+            reload: reloads objects from a json file
     """
 
     __file_path = "file.json"
