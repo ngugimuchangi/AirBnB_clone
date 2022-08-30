@@ -57,5 +57,5 @@ class FileStorage():
         if path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="UTF8") as f:
                 my_objects = load(f)
-            FileStorage.__objects = {i: BaseModel(my_objects[i])
+            FileStorage.__objects = {i: BaseModel(**my_objects[i])
                                      for i in my_objects.keys()}
