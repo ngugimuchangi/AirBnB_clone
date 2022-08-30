@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ File Storage Module
 """
-from models.base_model import BaseModel
 from json import dump, load
 from os import path
 
@@ -50,6 +49,8 @@ class FileStorage():
             Args: none
             Return: nothing
         """
+        from models.base_model import BaseModel
+
         if path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="UTF8") as f:
                 my_objects = load(f)
