@@ -1,3 +1,7 @@
 # Executable test files
 exec/
 __pycache__/
+file.json
+test_base_model.py
+test_base_model_dict.py
+test_save_reload_base_model.py

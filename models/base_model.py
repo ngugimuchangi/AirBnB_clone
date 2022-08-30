@@ -2,6 +2,7 @@
 """ Airbnb Base Model
 """
 from datetime import datetime
+from models import storage
 from uuid import uuid4
 
 
@@ -25,18 +26,18 @@ class BaseModel():
                 kwargs: keyword arguments
             Return: nothing
         """
-        if type(kwargs) is dict and "id" in kwargs:
-            self.id = kwargs["id"]
+        if type(kwargs) is dict and len(kwargs) > 0:
+            for key in kwargs.keys():
+                if key != "__class__":
+                    if any([key == "created_at", key == "updated_at"]):
+                        setattr(self, key, datetime.fromisoformat(kwargs[key]))
+                    else:
+                        setattr(self, key, kwargs[key])
         else:
             self.id = str(uuid4())
-        if type(kwargs) is dict and "created_at" in kwargs:
-            self.created_at = datetime.fromisoformat(kwargs["created_at"])
-        else:
             self.created_at = datetime.now()
-        if type(kwargs) is dict and "updated_at" in kwargs:
-            self.created_at = datetime.fromisoformat(kwargs["updated_at"])
-        else:
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """ String representation method
@@ -54,6 +55,7 @@ class BaseModel():
             Return: nothing
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """ Dictionary representation method
@@ -65,5 +67,4 @@ class BaseModel():
         my_dict["__class__"] = self.__class__.__name__
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
-
         return my_dict
