@@ -7,4 +7,3 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """ Command line interpreter class
     """
-
