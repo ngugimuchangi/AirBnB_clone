@@ -31,7 +31,7 @@ class FileStorage():
     def new(self, obj):
         """ Method that adds new instance to __objects
             Args:
-                obj (instance of BaseModel)
+                obj (instance of BaseModel or its subclasses)
             Return: nothing
         """
         key = ".".join([obj.__class__.__name__, obj.id])
@@ -52,10 +52,22 @@ class FileStorage():
             Args: none
             Return: nothing
         """
+        from models.amenity import Amenity
         from models.base_model import BaseModel
+        from models.city import City
+        from models.place import Place
+        from models.state import State
+        from models.review import Review
+        from models.user import User
 
+        classes = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
+                   'Place': Place, 'State': State, 'Review': Review,
+                   'User': User}
         if path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="UTF8") as f:
                 my_objects = load(f)
-            FileStorage.__objects = {i: BaseModel(**my_objects[i])
-                                     for i in my_objects.keys()}
+            for key in my_objects.keys():
+                my_key = key.split('.')[0]
+                FileStorage.__objects[key] = classes[my_key](**my_objects[key])
+            # FileStorage.__objects = {i: BaseModel(**my_objects[i])
+            #                        for i in my_objects.keys()}

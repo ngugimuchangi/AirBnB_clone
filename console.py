@@ -2,8 +2,14 @@
 """ Command line interpreter module
 """
 import cmd
-from models import storage
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.user import User
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -22,6 +28,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     cmd.Cmd.prompt = '(hbnb) '
+    cmd.Cmd.indentchars = ["User", "Place"]
     __classes = ["BaseModel", "User", "State", "City",
                  "Amenity", "Place", "Review"]
 
@@ -32,10 +39,13 @@ class HBNBCommand(cmd.Cmd):
                 line (str)
             Return: nothing
         """
+        classes = {'Amenity': Amenity, 'BaseModel': BaseModel, 'City': City,
+                   'Place': Place, 'State': State, 'Review': Review,
+                   'User': User}
         if line:
-            class_name = line.split()[0].strip('"')
+            class_name = line.split()[0]
             if class_name in HBNBCommand.__classes:
-                new_object = BaseModel()
+                new_object = classes[class_name]()
                 new_object.save()
                 print(new_object.id)
             else:
@@ -51,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
             Return: nothing
         """
         if HBNBCommand.validate(line):
-            obj_id = line.split()[1].strip('"')
+            obj_id = line.split()[1]
             for key in storage._FileStorage__objects.keys():
                 if storage._FileStorage__objects[key].id == obj_id:
                     print(storage._FileStorage__objects[key])
@@ -64,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
             Return: nothing
         """
         if HBNBCommand.validate(line):
-            obj_id = line.split()[1].strip('"')
+            obj_id = line.split()[1]
             for key in storage._FileStorage__objects.keys():
                 if storage._FileStorage__objects[key].id == obj_id:
                     del(storage._FileStorage__objects[key])
@@ -79,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
             Return: nothing
         """
         if line:
-            class_name = line.split()[0].strip('"')
+            class_name = line.split()[0]
             if class_name in HBNBCommand.__classes:
                 my_objects = []
                 for i in storage._FileStorage__objects.keys():
@@ -107,9 +117,25 @@ class HBNBCommand(cmd.Cmd):
            HBNBCommand.validate_attr(line.split()):
             class_name, obj_id, attr_name, attr_val = line.split()[:4]
             for i in storage._FileStorage__objects.keys():
-                if storage._FileStorage__objects[i].id == obj_id.strip('"'):
+                if storage._FileStorage__objects[i].id == obj_id:
                     obj = storage._FileStorage__objects[i]
-                    setattr(obj, attr_name.strip('"'), attr_val.strip('"'))
+                    attr_name = attr_name.strip('"')
+                    attr_val = attr_val.strip('"')
+                    if attr_val.isdigit():
+                        attr_val = int(attr_val)
+                    else:
+                        try:
+                            attr_val = float(attr_val)
+                        except Exception:
+                            pass
+                    if obj.__class__.__name__ == 'Place' and \
+                            attr_name == 'amenity_ids':
+                        if attr_name in obj.__dict__:
+                            obj.amenity_ids.append(attr_val)
+                        else:
+                            setattr(obj, attr_name, [attr_val])
+                    else:
+                        setattr(obj, attr_name, attr_val)
                     obj.save()
                     break
 
@@ -219,11 +245,13 @@ class HBNBCommand(cmd.Cmd):
         """
         if line:
             args = line.split()
-            class_name = args[0].strip('"')
+            class_name = args[0]
             if class_name in HBNBCommand.__classes:
                 if len(args) > 1:
-                    obj_id = args[1].strip('"')
-                    if any(storage._FileStorage__objects[i].id == obj_id
+                    obj_id = args[1]
+                    if any(storage._FileStorage__objects[i].id == obj_id and
+                           storage._FileStorage__objects[i].__class__.__name__
+                           == class_name
                            for i in storage._FileStorage__objects.keys()):
                         return True
                     else:
