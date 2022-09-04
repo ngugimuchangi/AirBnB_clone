@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Airbnb Base Model
+""" AirBnB BaseModel module
+    Contains BaseModel class and its methods
 """
 from datetime import datetime
 from models import storage
