@@ -1,4 +1,4 @@
-#!/usr/binn/python3
+#!/usr/bin/python3
 """ User class test module
 """
 import unittest
