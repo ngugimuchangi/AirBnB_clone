@@ -69,5 +69,3 @@ class FileStorage():
             for key in my_objects.keys():
                 my_key = key.split('.')[0]
                 FileStorage.__objects[key] = classes[my_key](**my_objects[key])
-            # FileStorage.__objects = {i: BaseModel(**my_objects[i])
-            #                        for i in my_objects.keys()}
