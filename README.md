@@ -1,4 +1,4 @@
-# 0x00. AirBnB clone - The console
+# AirBnB clone - The console
 
 ## Description
 AirBnB clone is a project to replicate the AirBnB website. This part of the project entails building instances that will be later used to create a dynamic website. It focuses on the backend operation, particularly developing a console that will facilitate the creation, updating and deletion of objects.
