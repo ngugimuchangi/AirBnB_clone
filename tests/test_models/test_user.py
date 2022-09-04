@@ -7,7 +7,6 @@ from json import dumps
 from models import storage
 from models.user import User
 from os import path, remove
-import pycodestyle
 from uuid import uuid4
 
 
@@ -21,10 +20,6 @@ class TestUser(unittest.TestCase):
         """
         if path.exists(storage._FileStorage__file_path):
             remove(storage._FileStorage__file_path)
-
-    def test_pycodestyle(self):
-        """ Test if module follows pycodestyle
-        """
 
     def test_default_constructor(self):
         """ Test instantiation of User objects

@@ -10,7 +10,6 @@ from models.city import City
 from models.place import Place
 from models.user import User
 from os import path, remove
-import pycodestyle
 from uuid import uuid4
 
 
@@ -24,10 +23,6 @@ class TestPlace(unittest.TestCase):
         """
         if path.exists(storage._FileStorage__file_path):
             remove(storage._FileStorage__file_path)
-
-    def test_pycodestyle(self):
-        """ Test if module follows pycodestyle
-        """
 
     def test_default_constructor(self):
         """ Test instantiation of User objects

@@ -8,7 +8,6 @@ from models import storage
 from models.city import City
 from models.state import State
 from os import path, remove
-import pycodestyle
 from uuid import uuid4
 
 
@@ -22,10 +21,6 @@ class TestCity(unittest.TestCase):
         """
         if path.exists(storage._FileStorage__file_path):
             remove(storage._FileStorage__file_path)
-
-    def test_pycodestyle(self):
-        """ Test if module follows pycodestyle
-        """
 
     def test_default_constructor(self):
         """ Test instantiation of BaseModel objects
