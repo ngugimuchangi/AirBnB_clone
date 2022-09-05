@@ -113,9 +113,10 @@ class TestStorage(unittest.TestCase):
     def test_all(self):
         """ Test all function
         """
+        my_dict = storage.all()
         my_objects = []
-        for i in storage._FileStorage__objects.keys():
-            my_objects.append(storage._FileStorage__objects[i])
+        for i in my_dict.keys():
+            my_objects.append(my_dict[i])
 
         self.assertTrue(self.base in my_objects)
         self.assertTrue(self.base_2 in my_objects)

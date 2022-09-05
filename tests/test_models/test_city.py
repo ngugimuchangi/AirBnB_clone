@@ -15,8 +15,7 @@ class TestCity(unittest.TestCase):
     """ City class test cases
     """
 
-    @classmethod
-    def tearDownClass(self):
+    def tearDown(self):
         """ Clean up actios at the end of test class
         """
         if path.exists(storage._FileStorage__file_path):
