@@ -114,14 +114,14 @@ class TestBaseModel(unittest.TestCase):
         output = "[{}] ({}) ({})".format(base.__class__.__name__,
                                          base.id, base.__dict__)
         self.assertTrue(type(base.__str__()) is str)
-        self.assertEqual(base.__str(), output)
+        self.assertEqual(base.__str__(), output)
 
         base.f_name = 'Son of'
         base.l_name = 'Kyrpton'
         output = "[{}] ({}) ({})".format(base.__class__.__name__,
                                          base.id, base.__dict__)
         self.assertTrue(type(base.__str__()) is str)
-        self.assertEqual(base.__str(), output)
+        self.assertEqual(base.__str__(), output)
 
     def test_to_dict(self):
         """ Test to_dict method

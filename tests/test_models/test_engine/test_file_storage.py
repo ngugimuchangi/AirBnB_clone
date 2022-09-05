@@ -143,13 +143,13 @@ class TestStorage(unittest.TestCase):
         """ Test reload function
         """
         with self.assertRaises(FileNotFoundError):
-            open(my_storage._FileStorage__file_path, "r", encoding="UTF8")
+            open(storage._FileStorage__file_path, "r", encoding="UTF8")
 
         storage.save()
         storage.reload()
         my_objects = []
-        for i in my_storage._FileStorage__objects.keys():
-            my_objects.append(my_storage._FileStorage__objects[i])
+        for i in storage._FileStorage__objects.keys():
+            my_objects.append(storage._FileStorage__objects[i])
 
         self.assertTrue(all(isinstance(i, BaseModel) for i in my_objects))
         self.assertTrue(any(isinstance(i, User) for i in my_objects))
