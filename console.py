@@ -62,6 +62,7 @@ class HBNBCommand(cmd.Cmd):
                     my_args += f" {my_match.group().strip('()')}"
                     my_args = re.sub(', ', ' ', my_args)
                     my_args = re.sub('"', '', my_args)
+                    my_args = re.sub("'", '', my_args)
                     my_cmd = my_cmd.split('(')[0]
                 else:
                     print(f"** Unknown syntax: {line}")
@@ -176,27 +177,39 @@ class HBNBCommand(cmd.Cmd):
         """
         if HBNBCommand.validate(line) and \
            HBNBCommand.validate_attr(line.split()):
+
             class_name, obj_id, attr_name, attr_val = line.split()[:4]
             for i in storage._FileStorage__objects.keys():
                 if storage._FileStorage__objects[i].id == obj_id:
                     obj = storage._FileStorage__objects[i]
-                    attr_name = attr_name.strip('"')
-                    attr_val = attr_val.strip('"')
-                    if attr_val.isdigit():
-                        attr_val = int(attr_val)
+                    my_dict = {}
+                    my_match = re.search(r'\{.*\}', line)
+                    if my_match is not None:
+                        items = my_match.group().strip('{}')
+                        items = re.sub(':', ' ', items).split()
+                        for i in range(len(items)):
+                            if i == 0 or i % 2 == 0:
+                                my_dict[items[i]] = items[i + 1]
                     else:
-                        try:
-                            attr_val = float(attr_val)
-                        except Exception:
-                            pass
-                    if obj.__class__.__name__ == 'Place' and \
-                            attr_name == 'amenity_ids':
-                        if attr_name in obj.__dict__:
-                            obj.amenity_ids.append(attr_val)
+                        my_dict[attr_name] = attr_val
+                    for i in my_dict.keys():
+                        attr_val = my_dict[i]
+                        attr_name = i
+                        if attr_val.isdigit():
+                            attr_val = int(attr_val)
                         else:
-                            setattr(obj, attr_name, [attr_val])
-                    else:
-                        setattr(obj, attr_name, attr_val)
+                            try:
+                                attr_val = float(attr_val)
+                            except Exception:
+                                pass
+                        if obj.__class__.__name__ == 'Place' and \
+                                attr_name == 'amenity_ids':
+                            if attr_name in obj.__dict__:
+                                obj.amenity_ids.append(attr_val)
+                            else:
+                                setattr(obj, attr_name, [attr_val])
+                        else:
+                            setattr(obj, attr_name, attr_val)
                     obj.save()
                     break
 
