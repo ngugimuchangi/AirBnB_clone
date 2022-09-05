@@ -142,7 +142,11 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """ Test save method
         """
+        storage.reload()
+        self.assertFalse(path.exists(storage._FileStorage__file_path))
+
         base = BaseModel()
+        base_2 = BaseModel()
         time_1 = base.updated_at
         base.save()
         time_2 = base.updated_at
@@ -151,9 +155,10 @@ class TestBaseModel(unittest.TestCase):
         my_json = dumps(base.to_dict())
         with open(storage._FileStorage__file_path, "r", encoding="UTF8") as f:
             read = f.read()
-        self.assertTrue(my_json in read)
+        self.assertTrue(my_json in read)     
+        storage.reload()
 
-    def test_create(self):
+def test_create(self):
         """ Test in new object is saved to list of object
         """
         base = BaseModel()
