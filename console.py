@@ -38,9 +38,9 @@ class HBNBCommand(cmd.Cmd):
                 lien(str)
             Return: execution method for command if it exists
         """
-        cmds = {'all': self.do_all, 'create': self.do_create, 'show':
+        cmds = {'all()': self.do_all, 'create()': self.do_create, 'show':
                 self.do_show, 'destroy': self.do_destroy, 'update':
-                self.do_update, 'help': self.do_help}
+                self.do_update}
         args = line.split()[1:]
         cmd = line.split()[0].split('.')
         if len(cmd) > 1:
