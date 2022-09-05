@@ -142,6 +142,7 @@ class TestStorage(unittest.TestCase):
     def test_reload(self):
         """ Test reload function
         """
+        storage.reload()
         with self.assertRaises(FileNotFoundError):
             open(storage._FileStorage__file_path, "r", encoding="UTF8")
 
