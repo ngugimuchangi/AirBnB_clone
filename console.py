@@ -38,9 +38,9 @@ class HBNBCommand(cmd.Cmd):
                 lien(str)
             Return: execution method for command if it exists
         """
-        cmds = {'all()': self.do_all, 'create()': self.do_create, 'show':
-                self.do_show, 'destroy': self.do_destroy, 'update':
-                self.do_update}
+        cmds = {'all()': self.do_all, 'create()': self.do_create, 'show()':
+                self.do_show, 'destroy()': self.do_destroy, 'update()':
+                self.do_update, 'count()': self.do_count}
         args = line.split()[1:]
         cmd = line.split()[0].split('.')
         if len(cmd) > 1:
@@ -58,6 +58,22 @@ class HBNBCommand(cmd.Cmd):
             return cmds[my_cmd](my_args)
         else:
             print(f"** Unknown syntax: {line.split()[0]}")
+
+    def do_count(self, line):
+        """
+        """
+        if line:
+            class_name = line.split()[0]
+            if class_name in HBNBCommand.__classes:
+                count = 0
+                for i in storage._FileStorage__objects.keys():
+                    if storage._FileStorage__objects[i].__class__.__name__ == \
+                       class_name:
+                        count += 1
+            else:
+                HBNBCommand.class_exists()
+                return
+            print(count)
 
     def do_create(self, line):
         """ Creates new BaseModel instance,
@@ -186,6 +202,12 @@ class HBNBCommand(cmd.Cmd):
             Args: none
             Return: self
         """
+    def help_count(self):
+        """ Help function for count command
+        """
+        print("Usage: <class name>.count().\n" +
+              "Count command to count the number of instances",
+              "of a specific class\n")
 
     def help_create(self):
         """ Help function for create command """
