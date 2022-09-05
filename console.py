@@ -32,6 +32,33 @@ class HBNBCommand(cmd.Cmd):
     __classes = ["BaseModel", "User", "State", "City",
                  "Amenity", "Place", "Review"]
 
+    def default(self, line):
+        """ Parse line to establish the command to exectue
+            Args:
+                lien(str)
+            Return: execution method for command if it exists
+        """
+        cmds = {'all': self.do_all, 'create': self.do_create, 'show':
+                self.do_show, 'destroy': self.do_destroy, 'update':
+                self.do_update, 'help': self.do_help}
+        args = line.split()[1:]
+        cmd = line.split()[0].split('.')
+        if len(cmd) > 1:
+            my_cmd = cmd[1]
+            my_args = cmd[0]
+            for i in range(len(args)):
+                my_args += f" {args[i]}"
+        else:
+            my_cmd = cmd[0]
+            my_args = ""
+            for i in range(len(args)):
+                my_args += f"{args[i]}"
+            my_args.split()
+        if my_cmd in cmds.keys():
+            return cmds[my_cmd](my_args)
+        else:
+            print(f"** Unknown syntax: {line.split()[0]}")
+
     def do_create(self, line):
         """ Creates new BaseModel instance,
             saves it to JSON file and print its id
