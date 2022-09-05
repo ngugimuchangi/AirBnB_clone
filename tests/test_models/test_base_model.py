@@ -111,14 +111,17 @@ class TestBaseModel(unittest.TestCase):
         """ Test string magic method
         """
         base = BaseModel()
-        base_str = base.__str__()
-        self.assertTrue(type(base_str) is str)
-        self.assertEqual(str(base), base_str)
+        output = "[{}] ({}) ({})".format(base.__class__.__name__,
+                                         base.id, base.__dict__)
+        self.assertTrue(type(base.__str__()) is str)
+        self.assertEqual(base.__str(), output)
 
         base.f_name = 'Son of'
         base.l_name = 'Kyrpton'
-        base_str = base.__str__()
-        self.assertEqual(str(base), base_str)
+        output = "[{}] ({}) ({})".format(base.__class__.__name__,
+                                         base.id, base.__dict__)
+        self.assertTrue(type(base.__str__()) is str)
+        self.assertEqual(base.__str(), output)
 
     def test_to_dict(self):
         """ Test to_dict method

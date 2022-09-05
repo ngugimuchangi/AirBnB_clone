@@ -142,11 +142,11 @@ class TestStorage(unittest.TestCase):
     def test_reload(self):
         """ Test reload function
         """
-        my_storage = FileStorage()
         with self.assertRaises(FileNotFoundError):
             open(my_storage._FileStorage__file_path, "r", encoding="UTF8")
 
-        my_storage.reload()
+        storage.save()
+        storage.reload()
         my_objects = []
         for i in my_storage._FileStorage__objects.keys():
             my_objects.append(my_storage._FileStorage__objects[i])
