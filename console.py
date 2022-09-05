@@ -2,6 +2,7 @@
 """ Command line interpreter module
 """
 import cmd
+import re
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -38,16 +39,33 @@ class HBNBCommand(cmd.Cmd):
                 lien(str)
             Return: execution method for command if it exists
         """
-        cmds = {'all()': self.do_all, 'create()': self.do_create, 'show()':
-                self.do_show, 'destroy()': self.do_destroy, 'update()':
-                self.do_update, 'count()': self.do_count}
+        cmds = {'all': self.do_all, 'create': self.do_create, 'show':
+                self.do_show, 'destroy': self.do_destroy, 'update':
+                self.do_update, 'count': self.do_count}
         args = line.split()[1:]
         cmd = line.split()[0].split('.')
         if len(cmd) > 1:
             my_cmd = cmd[1]
             my_args = cmd[0]
-            for i in range(len(args)):
-                my_args += f" {args[i]}"
+            if 'all' in my_cmd or 'create' in my_cmd:
+                my_match = re.search(r'\(\)$', cmd[1])
+                if my_match is not None:
+                    for i in range(len(args)):
+                        my_args += f" {args[i]}"
+                    return cmds[my_cmd.strip('()')](my_args)
+                else:
+                    print(f"** Unknown syntax: {line}")
+                    return
+            else:
+                my_match = re.search(r'\(.*\)', line)
+                if my_match is not None:
+                    my_args += f" {my_match.group().strip('()')}"
+                    my_args = re.sub(', ', ' ', my_args)
+                    my_args = re.sub('"', '', my_args)
+                    my_cmd = my_cmd.split('(')[0]
+                else:
+                    print(f"** Unknown syntax: {line}")
+                    return
         else:
             my_cmd = cmd[0]
             my_args = ""
@@ -57,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
         if my_cmd in cmds.keys():
             return cmds[my_cmd](my_args)
         else:
-            print(f"** Unknown syntax: {line.split()[0]}")
+            print(f"** Unknown syntax: {line}")
 
     def do_count(self, line):
         """
