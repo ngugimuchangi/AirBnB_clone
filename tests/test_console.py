@@ -83,8 +83,8 @@ class TestConsole(TestCase):
                 TestConsole.truncate_string_io(f)
 
                 HBNBCommand().onecmd(f"show {i} {output}")
-                output = search(r'.*-.*-.*-.*$', f.getvalue()).group()
-                self.assertEqual(f"{output}\n", f.getvalue())
+                obj_str = str(storage._FileStorage__objects[f"{i}.{output}"])
+                self.assertEqual(f"{obj_str}\n", f.getvalue())
                 TestConsole.truncate_string_io(f)
 
                 HBNBCommand().onecmd(f"destroy {i} {output}")
@@ -100,8 +100,8 @@ class TestConsole(TestCase):
                 TestConsole.truncate_string_io(f)
 
                 HBNBCommand().onecmd(f'{i}.show("{output}")')
-                output = search(r'.*-.*-.*-.*$', f.getvalue()).group()
-                self.assertEqual(f"{output}\n", f.getvalue())
+                obj_str = str(storage._FileStorage__objects[f"{i}.{output}"])
+                self.assertEqual(f"{obj_str}\n", f.getvalue())
                 TestConsole.truncate_string_io(f)
 
                 HBNBCommand().onecmd(f'{i}.destroy("{output}")')
