@@ -60,8 +60,8 @@ $ User.count()
 * **update:** updates attributes of an oject
 ```
 Synopsis: update <class_name> <id> <attribute_name> "<attribute_value>" or
-	<class name>.update("id", "attribute_name", "attribute value") or 
-	<class name>.update("id", dictionary)
+	  <class name>.update("id", "attribute_name", "attribute value") or 
+	  <class name>.update("id", dictionary)
 Examples:
 $ update User 1234 first_name "John"
 $ User.update("1234", "first_name", "Doe)
