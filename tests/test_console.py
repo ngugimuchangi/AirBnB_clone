@@ -71,6 +71,10 @@ class TestConsole(TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("")
             self.assertEqual("", f.getvalue())
+            TestConsole.truncate_string_io(f)
+            a = HBNBCommand()
+            a.emptyline()
+            self.assertEqual("", f.getvalue())
 
     def test_create_show_destroy(self):
         """ Test create, show, and destroy command
