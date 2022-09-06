@@ -91,7 +91,6 @@ class TestStorage(unittest.TestCase):
     def tearDown(self):
         """ Clean up action at the end of each test
         """
-
         del self.base
         del self.base_2
         del self.user
@@ -142,16 +141,21 @@ class TestStorage(unittest.TestCase):
     def test_reload(self):
         """ Test reload function
         """
-        my_storage = FileStorage()
-        my_storage.reload()
-        with self.assertRaises(FileNotFoundError):
-            open(my_storage._FileStorage__file_path, "r", encoding="UTF8")
+        FileStorage._FileStorage__objects = {}
+        self.assertEqual(len(storage._FileStorage__objects), 0)
+        storage.reload()
+        self.assertEqual(len(storage._FileStorage__objects), 0)
 
-        my_storage.save()
-        my_storage.reload()
+        self.setUp()
+        self.assertEqual(len(storage._FileStorage__objects), 14)
+        storage.save()
+        FileStorage._FileStorage__objects = {}
+        self.assertEqual(len(storage._FileStorage__objects), 0)
+        storage.reload()
+        self.assertEqual(len(storage._FileStorage__objects), 14)
         my_objects = []
-        for i in my_storage._FileStorage__objects.keys():
-            my_objects.append(my_storage._FileStorage__objects[i])
+        for i in storage._FileStorage__objects.keys():
+            my_objects.append(storage._FileStorage__objects[i])
 
         self.assertTrue(all(isinstance(i, BaseModel) for i in my_objects))
         self.assertTrue(any(isinstance(i, User) for i in my_objects))
