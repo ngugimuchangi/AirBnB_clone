@@ -8,39 +8,36 @@ is a command line interpreter for creating, deleting, updating and printing inst
 #### **Console commands:**
 * create 
 	Syntax: `create <class name>` or `<class.name>.create()`
-	
-`$ create BaseModel`
-
-`$ BaseModel.create()`
-
+```	
+$ create BaseModel
+$ BaseModel.create()
+```
 * show
-	
-`$ show BaseModel 1234`
-`$ BaseModel.show(1234)`
-
+```	
+$ show BaseModel 1234
+$ BaseModel.show(1234)
+```
 * destroy
-
-`$ destroy BaseModel 1234`
-`$ BaseModel.destroy(1234)`
-
+```
+$ destroy BaseModel 1234
+$ BaseModel.destroy(1234)
+```
 * all 
-
-`$ all`
-
-`$ all User`
-
-`$ User.all`
+```
+$ all
+$ all User
+$ User.all
+```
 
 * count
-
-`$ count User`
-
-`$ User.count()`
+```
+	$ count User
+	$ User.count()
+```
 
 * update
-
+```
 	$ update User 1234 first_name "John"
-
 	$ User.update("1234", "first_name", "Doe)
-
 	$ User.update("1234", {'first_name': "John", last_name = "Doe" )
+```
