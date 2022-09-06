@@ -209,9 +209,6 @@ class TestConsole(TestCase):
         str_io.truncate(0)
         str_io.seek(0)
 
-    def commands_test_routines(self, command="", str_io=None):
-        """ Method to execute routine test tasks to avoid code verbosity
-            NB: setUp methods not feasbility in this case.
-                let me know if you think, otheriwe :)
-        """
-        pass
+
+if __name__ == "__main__":
+    unittest.main()
