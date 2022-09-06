@@ -27,7 +27,7 @@ Examples:
 $ destroy BaseModel 1234
 $ BaseModel.destroy(1234)
 ```
-* **all:** Print all instances of a specific class or all instances available
+* **all:** prints all instances of a specific class or all instances available
 ```
 Syntax: all or all <class name> or <class name>.all()
 Examples:
@@ -36,7 +36,7 @@ $ all User
 $ User.all
 ```
 
-* **count:** count objects belonging to a specific class
+* **count:** counts objects belonging to a specific class
 ```
 Syntax: count <class_name> or <class name>.count()
 Examples:
@@ -52,5 +52,5 @@ Syntax: update <class_name> <id> <attribute_name> "<attribute_value>" or
 Examples:
 $ update User 1234 first_name "John"
 $ User.update("1234", "first_name", "Doe)
-$ User.update("1234", {'first_name': "John", last_name = "Doe" )
+$ User.update("1234", {'first_name': "John", last_name = "Doe"})
 ```
