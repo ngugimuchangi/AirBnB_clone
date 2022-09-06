@@ -78,35 +78,35 @@ class TestConsole(TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             for i in self.classes:
                 HBNBCommand().onecmd(f"create {i}")
-                output = search(r'.*-.*-.*-.*$', f.getvalue())
-                self.assertEqual(f"{output.group()}\n", f.getvalue())
+                output = search(r'.*-.*-.*-.*$', f.getvalue()).group()
+                self.assertEqual(f"{output}\n", f.getvalue())
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f"show {i} {output.group()}")
-                output = search(r'.*-.*-.*-.*$', f.getvalue())
-                self.assertEqual(f"{output.group()}\n", f.getvalue())
+                HBNBCommand().onecmd(f"show {i} {output}")
+                output = search(r'.*-.*-.*-.*$', f.getvalue()).group()
+                self.assertEqual(f"{output}\n", f.getvalue())
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f"destroy {i} {output.group()}")
+                HBNBCommand().onecmd(f"destroy {i} {output}")
                 TestConsole.truncate_string_io(f)
-                HBNBCommand().onecmd(f"show BaseModel {output.group()}")
+                HBNBCommand().onecmd(f"show {i} {output}")
                 output = "** no instance found **\n"
                 self.assertEqual(output, f.getvalue())
                 TestConsole.truncate_string_io(f)
 
                 HBNBCommand().onecmd(f"{i}.create()")
-                output = search(r'.*-.*-.*-.*$', f.getvalue())
-                self.assertEqual(f"{output.group()}\n", f.getvalue())
+                output = search(r'.*-.*-.*-.*$', f.getvalue()).group()
+                self.assertEqual(f"{output}\n", f.getvalue())
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f"{i}.show({output.group()})")
-                output = search(r'.*-.*-.*-.*$', f.getvalue())
-                self.assertEqual(f"{output.group()}\n", f.getvalue())
+                HBNBCommand().onecmd(f'{i}.show("{output}")')
+                output = search(r'.*-.*-.*-.*$', f.getvalue()).group()
+                self.assertEqual(f"{output}\n", f.getvalue())
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f'{i}.destroy("{output.group()}")')
+                HBNBCommand().onecmd(f'{i}.destroy("{output}")')
                 TestConsole.truncate_string_io(f)
-                HBNBCommand().onecmd(f"{i}.show({output.group()})")
+                HBNBCommand().onecmd(f'{i}.show("{output}")')
                 output = "** no instance found **\n"
                 self.assertEqual(output, f.getvalue())
                 TestConsole.truncate_string_io(f)
