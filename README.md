@@ -8,8 +8,8 @@ is a command line interpreter for creating, deleting, updating and printing inst
 #### **Console commands:**
 	* create `create <class name>` or `<class.name>.create()`
 
-	$ create BaseModel
-	$ BaseModel.create()
+`$ create BaseModel`
+`$ BaseModel.create()`
 
 	* show
 	* destroy
