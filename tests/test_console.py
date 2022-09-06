@@ -157,7 +157,7 @@ class TestConsole(TestCase):
                 str_0 = f.getvalue()
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f"update {i} {obj_id} name Nairobi")
+                HBNBCommand().onecmd(f'update {i} {obj_id} name "Nairobi"')
                 TestConsole.truncate_string_io(f)
                 HBNBCommand().onecmd(f"show {i} {obj_id}")
                 str_1 = f.getvalue()
@@ -168,7 +168,7 @@ class TestConsole(TestCase):
                 self.assertFalse("Nairobi" in str_0)
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f"{i}.update({obj_id} {update_dict})")
+                HBNBCommand().onecmd(f'{i}.update({obj_id} {update_dict})')
                 TestConsole.truncate_string_io(f)
                 HBNBCommand().onecmd(f"show {i} {obj_id}")
                 str_2 = f.getvalue()
@@ -181,7 +181,7 @@ class TestConsole(TestCase):
                 self.assertFalse("254" in str_1)
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f"{i}.update({obj_id}, text, 'test')")
+                HBNBCommand().onecmd(f'{i}.update({obj_id}, "text", "test")')
                 TestConsole.truncate_string_io(f)
                 HBNBCommand().onecmd(f"show {i} {obj_id}")
                 str_3 = f.getvalue()
