@@ -27,25 +27,25 @@ $ destroy BaseModel 1234
 $ BaseModel.destroy(1234)
 ```
 * **all:** Print all instances of a specific class or all instances available
-
-Syntax: `all` or `all <class name>` or `<class name>.all()`
 ```
+Syntax: **all** or all <class name> or <class name>.all()
+Example:
 $ all
 $ all User
 $ User.all
 ```
 
 * **count:** count objects belonging to a specific class
-
-Syntax: `count <class_name>` or `<class name>.count()`
 ```
+Syntax: count <class_name> or <class name>.count()
+Example:
 $ count User
 $ User.count()
 ```
 
 * **update:** updates attributes of an oject
-
 ```
+Syntax: update <class_name> <id> <attribute_name> "<attribute_value>" or <class name>.update("id", "attribute_name", "attribute value") or <class name>.update("id", dictionary)
 $ update User 1234 first_name "John"
 $ User.update("1234", "first_name", "Doe)
 $ User.update("1234", {'first_name': "John", last_name = "Doe" )
