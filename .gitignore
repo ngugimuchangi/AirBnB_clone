@@ -1,4 +1,5 @@
 # Executable test files
 exec/
 __pycache__/
+authors_gen
 file.json
