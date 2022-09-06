@@ -50,18 +50,26 @@ class TestConsole(TestCase):
     def test_help(self):
         """ Test help method
         """
+        cmds = ["EOF", "all", "count", "create", "destroy", "help", "quit",
+                "show",  "update"]
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help")
             output = "{} {}".format("EOF  all  count  create",
                                     "destroy  help quit  show  update")
             self.assertTrue(output, f.getvalue())
+            TestConsole.truncate_string_io(f)
+            for i in cmds:
+                HBNBCommand().onecmd(f"{help} {i}")
+                error = f"*** No help on {i}\n"
+                self.assertNotEqual(error, f.getvalue())
+                self.assertTrue(len(f.getvalue()) > 10)
+                TestConsole.truncate_string_io(f)
 
     def test_empty_line(self):
         """ Test emptyline method
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            cmd = HBNBCommand()
-            cmd.emptyline()
+            HBNBCommand("")
             self.assertEqual("", f.getvalue())
 
     def test_create_show_destroy(self):
