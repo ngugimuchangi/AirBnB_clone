@@ -233,6 +233,8 @@ class HBNBCommand(cmd.Cmd):
             Args: none
             Return: self
         """
+        pass
+
     def help_count(self):
         """ Help function for count command
         """
