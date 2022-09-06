@@ -69,7 +69,7 @@ class TestConsole(TestCase):
         """ Test emptyline method
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand("")
+            HBNBCommand().onecmd("")
             self.assertEqual("", f.getvalue())
 
     def test_create_show_destroy(self):
