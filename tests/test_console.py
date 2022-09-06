@@ -45,7 +45,7 @@ class TestConsole(TestCase):
         """
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("EOF")
-            self.assertEqual("\n", f.getvalue())
+            self.assertEqual("", f.getvalue().strip("\n"))
 
     def test_help(self):
         """ Test help method
