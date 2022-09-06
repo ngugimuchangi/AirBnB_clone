@@ -38,8 +38,7 @@ is a command line interpreter for creating, deleting, updating and printing inst
 `$ User.count()`
 
 * update
-`$ update User 1234 first_name "John"
 
-$ User.update("1234", "first_name", "Doe)
-
-$ User.update("1234", {'first_name': "John", last_name = "Doe" )`
+	$ update User 1234 first_name "John"
+	$ User.update("1234", "first_name", "Doe)
+	$ User.update("1234", {'first_name': "John", last_name = "Doe" )`
