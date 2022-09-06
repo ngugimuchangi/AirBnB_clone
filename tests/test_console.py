@@ -65,7 +65,7 @@ class TestConsole(TestCase):
                 self.assertTrue(len(f.getvalue()) > 10)
                 TestConsole.truncate_string_io(f)
 
-    def test_empty_line(self):
+    def test_emptyline(self):
         """ Test emptyline method
         """
         with patch('sys.stdout', new=StringIO()) as f:
