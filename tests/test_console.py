@@ -104,7 +104,7 @@ class TestConsole(TestCase):
                 self.assertEqual(f"{output.group()}\n", f.getvalue())
                 TestConsole.truncate_string_io(f)
 
-                HBNBCommand().onecmd(f"{i}.destroy({output.group()})")
+                HBNBCommand().onecmd(f'{i}.destroy("{output.group()}")')
                 TestConsole.truncate_string_io(f)
                 HBNBCommand().onecmd(f"{i}.show({output.group()})")
                 output = "** no instance found **\n"
