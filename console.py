@@ -352,7 +352,8 @@ class HBNBCommand(cmd.Cmd):
             in do_upate method
             Args:
                 args: list of arguments
-            Return: nothing
+            Return: True if attributes value and names are passed
+                    False if either or both are not passed.
         """
         if len(args) < 3:
             print("** attribute name missing **")
