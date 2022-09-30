@@ -1,71 +1,93 @@
+/* Places */
 .places {
   text-align: center;
 }
-.places h1 {
-  text-align: left;
-  font-size: 30px;
-  font-weight: bold;
-}
-
+/* Typography */
+.places h1,
 .places h2 {
   font-size: 30px;
+}
+.places h1 {
+  text-align: left;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+.places h2 {
   font-weight: bold;
   text-align: center;
-  display: inline-block;
+}
+strong {
+  font-weight: bold;
 }
 
-.places article {
-  display: inline-block;
+/* Homes */
+article {
   width: 390px;
+  min-height: 390px;
+  max-height: 390px;
   padding: 20px;
   margin: 20px;
   border: 1px solid #ff5a5f;
   border-radius: 4px;
+  display: inline-block;
+  offset: bottom;
 }
-
-.name_and_price {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .price_by_night {
-  display: flex;
-  color: #ff5a5f;
   border: 4px solid #ff5a5f;
   border-radius: 50%;
   min-width: 60px;
-  height: 60px;
+  min-height: 60px;
+  color: #ff5a5f;
   font-size: 30px;
+  text-align: center;
+  float: right;
+  position: relative;
+  bottom: 30px;
+  margin-bottom: -20px;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .information {
   height: 80px;
-  border-top: 1px solid #dddddd;
-  border-bottom: 1px solid #dddddd;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  clear: both;
 }
-
 .max_guest,
 .number_rooms,
-.max_bathrooms {
+.number_bathrooms {
   width: 100px;
+  height: 80%;
+  display: inline-block;
 }
 .max_guest {
-  background: url("../images/icon_group.png") no-repeat;
+  background: url("../images/icon_group.png") center center no-repeat;
 }
 .number_rooms {
-  background: url("../images/icon_bed.png") no-repeat;
+  background: url("../images/icon_bed.png") center center no-repeat;
 }
-.max_bathrooms {
-  background: url("../images/icon_bath.png") no-repeat;
+.number_bathrooms {
+  background: url("../images/icon_bath.png") center center no-repeat;
 }
 
+.information p {
+  display: inline-block;
+  width: 100px;
+  height: 10%;
+  position: relative;
+  top: -10px;
+  text-align: center;
+}
 .user,
 .description {
   text-align: left;
+}
+.user {
+  margin-top: 20px;
+}
+.description {
+  margin-top: 10px;
+  letter-spacing: 0.5px;
 }
