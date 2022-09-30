@@ -4,7 +4,7 @@ footer {
   width: 100%;
   background-color: white;
   border-top: 1px solid #ccc;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   display: flex;
   justify-content: center;

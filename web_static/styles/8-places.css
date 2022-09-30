@@ -24,14 +24,11 @@ strong {
 /* Homes */
 article {
   width: 390px;
-  min-height: 390px;
-  max-height: 390px;
   padding: 20px;
   margin: 20px;
   border: 1px solid #ff5a5f;
   border-radius: 4px;
   display: inline-block;
-  offset: bottom;
 }
 .price_by_night {
   border: 4px solid #ff5a5f;
