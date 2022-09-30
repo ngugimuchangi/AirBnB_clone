@@ -1,0 +1,12 @@
+/* Footer custom styles */
+footer {
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid #ccc;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
