@@ -1,0 +1,7 @@
+/* Header custom styles */
+header {
+  height: 70px;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  background: white url("../images/logo.png") 20px center no-repeat;
+}
