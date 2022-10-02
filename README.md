@@ -1,7 +1,9 @@
-# AirBnB clone - The console
+# AirBnB clone - The console & Web Static
 
 ## About
-AirBnB clone is a replica of the AirBnB website. This part of the project entails building instances that will be later used to create a dynamic website. It focuses on the backend operations, particularly developing a console that will facilitate the creation, updating and deletion of objects.
+AirBnB clone is a replica of the AirBnB website. This part of the project entails building instances that will be later used to create a dynamic website. It focuses on developing:
+* A console that will facilitate the creation, updating and deletion of objects.
+* A static web design of AirBnB
 
 ## **The Console:**
 It is a command line interpreter for creating, deleting, updating and printing instances It allows interaction with BaseModel class objects and objects of its subclasses. It is useful in managing backend operation of AirBnB website
@@ -81,3 +83,6 @@ Synopsis: quit
 Examples:
 $ quit
 ```
+
+## **Web Static**
+AirBnB static web clone
