@@ -86,3 +86,13 @@ $ quit
 
 ## **Web Static**
 AirBnB static web clone
+
+## Contributors
+<details>
+<summary>Duncan Ngugi</summary>
+[Github](https://github.com/ngugimuchangi)
+</details>
+<details>
+<summary>Samuel Ekati</summary>
+[Github](https://github.com/Samuthe)
+<details>
