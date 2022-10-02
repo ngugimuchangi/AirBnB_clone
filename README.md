@@ -1,4 +1,4 @@
-# AirBnB clone - The console & Web Static
+# AirBnB Clone - The Console & Web Static
 
 ## About
 AirBnB clone is a replica of the AirBnB website. This part of the project entails building instances that will be later used to create a dynamic website. It focuses on developing:
