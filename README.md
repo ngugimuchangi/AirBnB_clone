@@ -85,7 +85,7 @@ $ quit
 ```
 
 ## **Web Static**
-AirBnB static web clone
+AirBnB static website
 
 ## Contributors
 <details>
