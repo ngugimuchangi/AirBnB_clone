@@ -25,6 +25,8 @@ class TestConsole(TestCase):
         """
         self.classes = ["BaseModel", "User", "State", "City", "Amenity",
                         "Place", "Review"]
+        with patch('sys.stdout', new=StringIO()) as f:
+            TestConsole.truncate_string_io(f)
 
     def tearDown(self):
         """ Clean up actions at the end of each test
